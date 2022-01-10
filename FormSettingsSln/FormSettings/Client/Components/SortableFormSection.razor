@@ -1,0 +1,20 @@
+﻿@if (Model.Visible)
+{
+    <div draggable="true" id="position-@Model.Index" class="row mb-3">
+        <div class="col-1"><img src="draggable-icon-25.jpg" width="10" height="10" /></div>
+        <div class="col-sm-3"><label for="@Model.ElementId" class="col-form-label">@Model.Label</label></div>
+        <div class="col-sm-4">
+            <input type="@Model.InputType" id="@Model.ElementId" class="form-control">
+        </div>
+        <div class="col-sm-2">
+            @if (!Model.Required)
+            { 
+                <span><input @onchange="CheckChanged" type="checkbox" /> Hide</span>
+            }
+            else
+            {
+                <span style="color:red;">Required</span>
+            }
+        </div>
+    </div>
+}

@@ -1,0 +1,22 @@
+﻿@using FormSettings.Shared
+
+<h3>Account Form</h3>
+
+<div class="row">
+    <div class="col-6"></div><div class="col-2"><button class="form-control" @onclick="() => ShowHidden()">Show hidden</button></div>
+</div>
+
+<p>Drag and drop rows for desired order.</p>
+
+<div class="container" 
+    ondragover="event.preventDefault();" 
+    ondragstart="event.dataTransfer.setData('', event.target.id);">
+    @foreach(SortableFormSectionModel model in sortableSections.OrderBy(section => section.Index))
+    {
+        <div @ondrop="() => HandleDrop(model)" @ondragstart="() => draggingSection = model" @ondragend="() => draggingSection = null">
+            <SortableFormSection Model="model" />
+        </div>
+    }
+</div>
+
+
